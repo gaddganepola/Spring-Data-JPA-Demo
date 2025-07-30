@@ -6,6 +6,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 
+import java.util.List;
+import java.util.Optional;
+
 @SpringBootApplication
 public class StudentSpringDataJpaApplication {
 
@@ -15,24 +18,40 @@ public class StudentSpringDataJpaApplication {
 
 		StudentRepo repo = context.getBean(StudentRepo.class);
 
-		Student s1 = context.getBean(Student.class);
-		Student s2 = context.getBean(Student.class);
-		Student s3 = context.getBean(Student.class);
+//		Student s1 = context.getBean(Student.class);
+//		Student s2 = context.getBean(Student.class);
+//		Student s3 = context.getBean(Student.class);
+//
+//		s1.setRollNo(101);
+//		s1.setName("Ravi");
+//		s1.setMarks(99);
+//
+//		s2.setRollNo(102);
+//		s2.setName("Vijay");
+//		s2.setMarks(98);
+//
+//		s3.setRollNo(103);
+//		s3.setName("Ajay");
+//		s3.setMarks(97);
+//
+//		repo.save(s1);
+//		repo.save(s2);
+//		repo.save(s3);
 
-		s1.setRollNo(101);
-		s1.setName("Ravi");
-		s1.setMarks(99);
+		List<Student> students = repo.findAll();
+		for (Student student : students) {
+			System.out.println(student);
+		}
 
-		s2.setRollNo(102);
-		s2.setName("Vijay");
-		s2.setMarks(98);
+		Optional<Student> s = repo.findById(103);
+		System.out.println(s.orElse(new Student()));
 
-		s3.setRollNo(103);
-		s3.setName("Ajay");
-		s3.setMarks(97);
+		System.out.println(repo.findByName("csdfsd"));
 
-		repo.save(s1);
-		repo.save(s2);
-		repo.save(s3);
+		System.out.println(repo.findByMarks(99));
+
+		System.out.println(repo.findByMarksGreaterThan(97));
+
+
 	}
 }
