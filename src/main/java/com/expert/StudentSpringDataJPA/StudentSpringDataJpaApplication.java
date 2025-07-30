@@ -20,7 +20,7 @@ public class StudentSpringDataJpaApplication {
 
 //		Student s1 = context.getBean(Student.class);
 //		Student s2 = context.getBean(Student.class);
-//		Student s3 = context.getBean(Student.class);
+		Student s3 = context.getBean(Student.class);
 //
 //		s1.setRollNo(101);
 //		s1.setName("Ravi");
@@ -38,19 +38,30 @@ public class StudentSpringDataJpaApplication {
 //		repo.save(s2);
 //		repo.save(s3);
 
-		List<Student> students = repo.findAll();
-		for (Student student : students) {
-			System.out.println(student);
-		}
+//		List<Student> students = repo.findAll();
+//		for (Student student : students) {
+//			System.out.println(student);
+//		}
+//
+//		Optional<Student> s = repo.findById(103);
+//		System.out.println(s.orElse(new Student()));
+//
+//		System.out.println(repo.findByName("csdfsd"));
+//
+//		System.out.println(repo.findByMarks(99));
+//
+//		System.out.println(repo.findByMarksGreaterThan(97));
 
-		Optional<Student> s = repo.findById(103);
-		System.out.println(s.orElse(new Student()));
 
-		System.out.println(repo.findByName("csdfsd"));
+		s3.setRollNo(103);
+		s3.setName("Ajay Ray");
+		s3.setMarks(85);
 
-		System.out.println(repo.findByMarks(99));
+		//Update the record
+		repo.save(s3);
 
-		System.out.println(repo.findByMarksGreaterThan(97));
+		repo.delete(s3);
+
 
 
 	}
